@@ -1,8 +1,9 @@
 import numpy as np
 import cv2
 import time
+from split_ADT_pic_to_three import t
 # import matplotlib.pyplot as plt
-def split_up(path, a):
+def split_up(path, pic):
     BoundingAreaThres = 80000.0
     # 上下边界截取方框阈值
     thres_param_1 = 30
@@ -12,7 +13,7 @@ def split_up(path, a):
     down_thres = 120
 
     # image = cv2.imread("reko.jpg", cv2.IMREAD_COLOR)
-    image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    image = cv2.imread(path + pic, cv2.IMREAD_GRAYSCALE)
     img_color1 = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
     img_color2 = np.copy(img_color1)
     # cv2.imshow("show", image)
@@ -168,14 +169,15 @@ def split_up(path, a):
     # cv2.imwrite("upper_record\\upper_1.png", img_color1)
     # cv2.imshow("show5", img_color1)
     # cv2.waitKey(0)
-    cv2.imwrite("dataset/upper_part/{}.png".format(a), img_color1)
+    cv2.imwrite("dataset/upper_part/{}.png".format(pic), img_color1)
+    print('time cost:', time.time() - t, pic)
     return True
 
-def process_pic_list(path, pic_list):
-    a = 0
-    for pic in pic_list:
-        split_up( path + pic, a)
-        a += 1
+def process_pic_list(pic_list):
+    path = './dataset/orign/'
+    # print('Pl:', pic_list)
+    # for pic in pic_list:
+    split_up( path, pic_list)
 
 
 if __name__ == '__main__':
