@@ -171,6 +171,13 @@ def split_up(path, a):
     cv2.imwrite("dataset/upper_part/{}.png".format(a), img_color1)
     return True
 
+def process_pic_list(path, pic_list):
+    a = 0
+    for pic in pic_list:
+        split_up( path + pic, a)
+        a += 1
+
+
 if __name__ == '__main__':
     split_up('./dataset/orign/1.png', 200)
 
