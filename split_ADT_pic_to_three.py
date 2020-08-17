@@ -19,7 +19,7 @@ if which == 0:
     if __name__ == '__main__':
 
         p = Pool(4)
-        p.map(OpenCV_spllit_up.process_pic_list, image_files)
+        p.map(OpenCV_spllit_up.split_up, image_files)
         p.close()
         p.join()
     # OpenCV_spllit_up.process_pic_list(path, image_files_1)
